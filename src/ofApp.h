@@ -16,8 +16,10 @@
 #include "NoteBlock.h"
 
 #include "ofxTonic.h"
-using namespace Tonic;
 
+#include "PixelBlock.h"
+
+using namespace Tonic;
 
 using namespace std;
 using namespace MIDIConstants;
@@ -104,8 +106,8 @@ public:
     
     // Trigger Line
     vector<TriggerLine> triggerLine;
-    ofVec2f mouseReleassedPos;
-    ofVec2f mousePressedPos;
+    ofVec2f touchUpPos;
+    ofVec2f touchDownPos;
     void drawPreviewLine();
     void triggerLineDraw();
     
@@ -124,10 +126,17 @@ public:
     ofTexture tex;
     unsigned char * pix;
 
+    vector<float> pixelColor;
+    vector<float> pixelNote;
+    
     int pixelNum;
     int pixelSize;
     int widthRes, heightRes;
     int numWidthPixel, numHeightPixel;
+    
+    
+    // Pixel
+    vector<PixelBlock> pixelBlocks;
     
 };
 

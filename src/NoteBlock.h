@@ -5,6 +5,7 @@
 //  Created by JeongHoPark on 20.11.13.
 //
 //
+#pragma once
 
 #ifndef __timeLineTrigger__NoteBlock__
 #define __timeLineTrigger__NoteBlock__

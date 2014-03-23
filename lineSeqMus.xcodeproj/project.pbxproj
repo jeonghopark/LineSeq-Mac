@@ -53,6 +53,7 @@
 		A8825BE818DB886D0007A9A1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8825BE618DB88670007A9A1 /* Accelerate.framework */; };
 		A8825BEE18DB90920007A9A1 /* lineSeqMusICON.png in Resources */ = {isa = PBXBuildFile; fileRef = A8825BED18DB90920007A9A1 /* lineSeqMusICON.png */; };
 		A8825EF718DEF7440007A9A1 /* ofApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8825EF618DEF7440007A9A1 /* ofApp.mm */; };
+		A89C74DB18DF3C990098D14F /* PixelBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A89C74D918DF3C990098D14F /* PixelBlock.cpp */; };
 		AA324006068B7C09BDD256CE /* RampedValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35D845F1FFEA6C81B9B622FA /* RampedValue.cpp */; };
 		AD34663E7426F87C191A7A51 /* ControlStepper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F983244281F1AF54A2F99A5F /* ControlStepper.cpp */; };
 		AD7612D30056C4ED340F126D /* BufferFiller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2598FD4C643681A8F5CA1C3A /* BufferFiller.cpp */; };
@@ -208,6 +209,8 @@
 		A8825BED18DB90920007A9A1 /* lineSeqMusICON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lineSeqMusICON.png; path = bin/data/lineSeqMusICON.png; sourceTree = "<group>"; };
 		A8825EF518DEF7440007A9A1 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
 		A8825EF618DEF7440007A9A1 /* ofApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofApp.mm; sourceTree = "<group>"; };
+		A89C74D918DF3C990098D14F /* PixelBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelBlock.cpp; sourceTree = "<group>"; };
+		A89C74DA18DF3C990098D14F /* PixelBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelBlock.h; sourceTree = "<group>"; };
 		AA9085C6C97E926976E87A65 /* SquareWave.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SquareWave.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/SquareWave.h; sourceTree = SOURCE_ROOT; };
 		AC8F7180BFF79FD24AC99E68 /* LFNoise.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LFNoise.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/LFNoise.cpp; sourceTree = SOURCE_ROOT; };
 		AF5859571FBF79A21B95F14B /* StereoDelay.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = StereoDelay.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/StereoDelay.h; sourceTree = SOURCE_ROOT; };
@@ -459,12 +462,12 @@
 		A8825EF218DEEFED0007A9A1 /* midi */ = {
 			isa = PBXGroup;
 			children = (
+				23231D5B9BFA976EC334F601 /* DynamicVector.cpp */,
+				E3C1086A36300A3C345BEDC1 /* DynamicVector.h */,
 				26B24989CEFA066C732EF343 /* drawMidiNotes.cpp */,
 				C427B42BB65B6AA017739432 /* drawMidiNotes.h */,
 				B6B1881C95C600C095C833A8 /* midiEventHolder.cpp */,
 				F2D4AF3DC3F12EB1F38EB600 /* midiEventHolder.h */,
-				DC9812335144769961D9581E /* NoteBlock.cpp */,
-				D473EFFA85BA2F401A0212F1 /* NoteBlock.h */,
 				A8825BE118DB87490007A9A1 /* MIDIComposition.h */,
 				A8825BE218DB87490007A9A1 /* MIDIEvent.h */,
 				A8825BE318DB87490007A9A1 /* MIDIFileReader.cpp */,
@@ -534,10 +537,12 @@
 			isa = PBXGroup;
 			children = (
 				E4D8936B11527B74007E1F53 /* main.mm */,
-				A8825EF518DEF7440007A9A1 /* ofApp.h */,
 				A8825EF618DEF7440007A9A1 /* ofApp.mm */,
-				23231D5B9BFA976EC334F601 /* DynamicVector.cpp */,
-				E3C1086A36300A3C345BEDC1 /* DynamicVector.h */,
+				A8825EF518DEF7440007A9A1 /* ofApp.h */,
+				A89C74D918DF3C990098D14F /* PixelBlock.cpp */,
+				A89C74DA18DF3C990098D14F /* PixelBlock.h */,
+				DC9812335144769961D9581E /* NoteBlock.cpp */,
+				D473EFFA85BA2F401A0212F1 /* NoteBlock.h */,
 				A8825EF218DEEFED0007A9A1 /* midi */,
 			);
 			path = src;
@@ -685,6 +690,7 @@
 				610C312DB737763F805885AE /* ControlXYSpeed.cpp in Sources */,
 				24A5611B35CF7FB6529AB50B /* DelayUtils.cpp in Sources */,
 				FAA39ECB15B2726AEA04FA12 /* Effect.cpp in Sources */,
+				A89C74DB18DF3C990098D14F /* PixelBlock.cpp in Sources */,
 				F11B3FCA089E4C0D203206F0 /* Filters.cpp in Sources */,
 				3D4BB2946E80367CAB556E39 /* FilterUtils.cpp in Sources */,
 				A8825EF718DEF7440007A9A1 /* ofApp.mm in Sources */,
