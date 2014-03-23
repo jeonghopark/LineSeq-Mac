@@ -13,6 +13,18 @@ void ofApp::setup(){
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 
+    pixelNum = 20;
+    pixelSize = 20;
+    videoGrabber.setDeviceID(1);
+    videoGrabber.initGrabber(480, 360);
+    widthRes = round(videoGrabber.getWidth()/pixelNum);
+    heightRes = round(videoGrabber.getHeight()/pixelNum);
+    numWidthPixel = round(videoGrabber.getWidth()/pixelSize);
+    numHeightPixel = round(videoGrabber.getHeight()/pixelSize);
+    
+	tex.allocate(numWidthPixel, numHeightPixel, GL_RGB);
+	
+	pix = new unsigned char[ (int)( numWidthPixel * numHeightPixel * 3.0) ];
 
 	midiFileName = "entertainer.mid";
 	int retVal = cannamMainFunction();
@@ -45,6 +57,32 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+	videoGrabber.update();
+	
+	unsigned char * src = videoGrabber.getPixels();
+	int totalPix = videoGrabber.getWidth() * videoGrabber.getHeight() * 3;
+    
+    int _pixIndex=0;
+    for (int i=0; i<videoGrabber.getHeight(); i+=pixelSize) {
+        for (int j=0; j<videoGrabber.getWidth(); j+=pixelSize) {
+            int _index = (j + i * numWidthPixel * pixelSize) * 3;
+            pix[_pixIndex  ] = src[_index];
+            pix[_pixIndex+1] = src[_index+1];
+            pix[_pixIndex+2] = src[_index+2];
+            _pixIndex+=3;
+        }
+    }
+    
+//	for(int k = 0; k < totalPix; k+= 3){
+//		pix[k  ] = 255 - src[k];
+//		pix[k+1] = 255 - src[k+1];
+//		pix[k+2] = 255 - src[k+2];
+//	}
+	
+    tex.loadData(pix, tex.getWidth(), tex.getHeight(), GL_RGB);
+    
+    // MIDI
 	if (playing){
 		midiEvents.updatePlayPosition();
     }
@@ -58,14 +96,20 @@ void ofApp::update(){
 void ofApp::draw(){
 
 
-//s        midiEvents.drawFile();
+//        midiEvents.drawFile();
 
+    int _sizeTexRatio = 5;
+//    tex.draw( 0, 0, ofGetWidth(), ofGetHeight() );
+
+    
     drawPreviewLine();
     triggerLineDraw();
 
-    for (int i=0; i<noteBlock.size(); i++) {
-        noteBlock[i].drawing();
-    }
+//    for (int i=0; i<noteBlock.size(); i++) {
+//        noteBlock[i].drawing();
+//    }
+    
+    ofDrawBitmapString( ofToString( ofGetFrameRate(),2), 10, ofGetHeight()-20 );
 }
 
 

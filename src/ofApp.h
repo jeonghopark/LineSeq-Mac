@@ -117,4 +117,18 @@ public:
     
     bool reload;
     
+    
+    //Video
+    
+    ofVideoGrabber videoGrabber;
+    ofTexture tex;
+    unsigned char * pix;
+
+    int pixelNum;
+    int pixelSize;
+    int widthRes, heightRes;
+    int numWidthPixel, numHeightPixel;
+    
 };
+
+
