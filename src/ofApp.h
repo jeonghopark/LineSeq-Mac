@@ -113,6 +113,8 @@ public:
     
     vector<bool> triggerPixel;
     
+    ofPoint triggerPosOnLines[8];
+    
 };
 
 

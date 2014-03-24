@@ -73,49 +73,70 @@ void ofApp::update(){
     
     triggerPixel.resize(numHeightPixel*numWidthPixel);
 
-    for (int k=0; k<triggerLine.size(); k++) {
-        triggerPosOnLine = ( triggerLine[k].stop - triggerLine[k].start ) * triggerMovingFactor + triggerLine[k].start;
-        
-        for (int i=0; i<numHeightPixel; i++) {
-            for (int j=0; j<numWidthPixel; j++) {
-                
-                int _index = j * pixelSize * 3 + (numHeightPixel-1-i) * pixelSize * numWidthPixel * pixelSize * 3;
-                
-                int _indexPixel = j + i * numWidthPixel;
-                
-                ofPoint _pixelPos = ofPoint(j*_drawPixelSize, i*_drawPixelSize) + _pixelChangePos;
-
-                
-                //        for (int i=0; i<noteBlock.size(); i++) {
-                //            noteBlock[i].contact(triggerPosOnLine);
-                //            if (noteBlock[i].contactBlock) {
-                //                trigger( noteBlock.at(i).midiPitch );
-                //            }
-                //        }
-
-//                if (contactPixel(triggerPosOnLine.x, triggerPosOnLine.y, _pixelPos.x, _pixelPos.y)) {
-//                    pixelBlocks[_indexPixel].bPixelContact = true;
-//                } else {
-//                    pixelBlocks[_indexPixel].bPixelContact = false;
-//                }
-                
-                pixelBlocks[_indexPixel].contactPixel(triggerPosOnLine.x, triggerPosOnLine.y);
-                
+    
+    for (int i=0; i<numHeightPixel; i++) {
+        for (int j=0; j<numWidthPixel; j++) {
+            
+            int _index = j * pixelSize * 3 + (numHeightPixel-1-i) * pixelSize * numWidthPixel * pixelSize * 3;
+            int _indexPixel = j + i * numWidthPixel;
+            
+            pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
+            
+            for (int k=0; k<triggerLine.size(); k++) {
+                triggerPosOnLines[k] = ( triggerLine[k].stop - triggerLine[k].start ) * triggerMovingFactor + triggerLine[k].start;
+                pixelBlocks[_indexPixel].contactPixel(triggerPosOnLines[k].x, triggerPosOnLines[k].y);
                 if (pixelBlocks[_indexPixel].bPixelContact) {
                     pixelBlocks[_indexPixel].pixelColor = ofColor(255,0,0);
                 } else {
-                    pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
                 }
-
-
-                //                pixelBlocks[_pixelIndex].contactPixel(triggerPosOnLine.x, triggerPosOnLine.y);
-                //                if (pixelBlocks[_pixelIndex].bPixelContact) pixelBlocks[_pixelIndex].pixelColor = ofColor(0);
-                //                else pixelBlocks[_pixelIndex].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
             }
         }
     }
     
-    
+
+//    if (triggerLine.size()==3) {
+//        
+//        ofPoint triggerPosOnLine1 = ( triggerLine[0].stop - triggerLine[0].start ) * triggerMovingFactor + triggerLine[0].start;
+//        ofPoint triggerPosOnLine2 = ( triggerLine[1].stop - triggerLine[1].start ) * triggerMovingFactor + triggerLine[1].start;
+//        ofPoint triggerPosOnLine3 = ( triggerLine[2].stop - triggerLine[2].start ) * triggerMovingFactor + triggerLine[2].start;
+//
+//        for (int i=0; i<numHeightPixel; i++) {
+//            for (int j=0; j<numWidthPixel; j++) {
+//                
+//                int _index = j * pixelSize * 3 + (numHeightPixel-1-i) * pixelSize * numWidthPixel * pixelSize * 3;
+//                
+//                int _indexPixel = j + i * numWidthPixel;
+//                
+//                ofPoint _pixelPos = ofPoint(j*_drawPixelSize, i*_drawPixelSize) + _pixelChangePos;
+//                
+//                pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
+//                
+//                pixelBlocks[_indexPixel].contactPixel(triggerPosOnLine1.x, triggerPosOnLine1.y);
+//                if (pixelBlocks[_indexPixel].bPixelContact) {
+//                    pixelBlocks[_indexPixel].pixelColor = ofColor(255,0,0);
+//                } else {
+////                    pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
+//                }
+//
+//            
+//                pixelBlocks[_indexPixel].contactPixel(triggerPosOnLine2.x, triggerPosOnLine2.y);
+//                if (pixelBlocks[_indexPixel].bPixelContact) {
+//                    pixelBlocks[_indexPixel].pixelColor = ofColor(255,0,0);
+//                } else {
+////                    pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
+//                }
+//
+//                pixelBlocks[_indexPixel].contactPixel(triggerPosOnLine3.x, triggerPosOnLine3.y);
+//                if (pixelBlocks[_indexPixel].bPixelContact) {
+//                    pixelBlocks[_indexPixel].pixelColor = ofColor(255,0,0);
+//                } else {
+////                    pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
+//                }
+//
+//            }
+//        }
+//
+//    }
     
     for (int i=0; i<numHeightPixel; i++) {
         for (int j=0; j<numWidthPixel; j++) {
