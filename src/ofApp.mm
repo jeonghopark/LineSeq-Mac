@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    ofBackground(10);
+    ofBackground(120);
     ofSetFrameRate(60);
     ofSetOrientation(OF_ORIENTATION_90_RIGHT);
     
@@ -22,8 +22,6 @@ void ofApp::setup(){
 	tex.allocate(numWidthPixel, numHeightPixel, GL_RGB);
 	pix = new unsigned char[ (int)( numWidthPixel * numHeightPixel * 3.0) ];
     pixelBlocks.resize(numWidthPixel * numHeightPixel);
-    
-    cout << videoGrabber.getWidth() << endl;
     
 	playing = false;
     
@@ -73,6 +71,8 @@ void ofApp::update(){
     //        }
     //    }
     
+    triggerPixel.resize(numHeightPixel*numWidthPixel);
+
     for (int k=0; k<triggerLine.size(); k++) {
         triggerPosOnLine = ( triggerLine[k].stop - triggerLine[k].start ) * triggerMovingFactor + triggerLine[k].start;
         
@@ -86,9 +86,23 @@ void ofApp::update(){
                 ofPoint _pixelPos = ofPoint(j*_drawPixelSize, i*_drawPixelSize) + _pixelChangePos;
 
                 
+                //        for (int i=0; i<noteBlock.size(); i++) {
+                //            noteBlock[i].contact(triggerPosOnLine);
+                //            if (noteBlock[i].contactBlock) {
+                //                trigger( noteBlock.at(i).midiPitch );
+                //            }
+                //        }
+
+//                if (contactPixel(triggerPosOnLine.x, triggerPosOnLine.y, _pixelPos.x, _pixelPos.y)) {
+//                    pixelBlocks[_indexPixel].bPixelContact = true;
+//                } else {
+//                    pixelBlocks[_indexPixel].bPixelContact = false;
+//                }
                 
-                if (contactPixel(triggerPosOnLine.x, triggerPosOnLine.y, _pixelPos.x, _pixelPos.y)) {
-                    pixelBlocks[_indexPixel].pixelColor = ofColor(0);
+                pixelBlocks[_indexPixel].contactPixel(triggerPosOnLine.x, triggerPosOnLine.y);
+                
+                if (pixelBlocks[_indexPixel].bPixelContact) {
+                    pixelBlocks[_indexPixel].pixelColor = ofColor(255,0,0);
                 } else {
                     pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
                 }

@@ -14,7 +14,7 @@ PixelBlock::PixelBlock(){
 
 
 void PixelBlock::setup(){
-    pixelColorChange = pixelColor;
+
 }
 
 void PixelBlock::pixelMovUpdate(){
@@ -26,20 +26,12 @@ void PixelBlock::pixelMovUpdate(){
 
 void PixelBlock::pixelColorUpdate(){
     
-    if (bPixelContact) pixelColorChange = ofColor_<unsigned char>::black;
-    else pixelColorChange = pixelColor;
-
 }
 
 void PixelBlock::drawPixelRect(int _size){
     
     ofPushMatrix();
     ofPushStyle();
-    
-    if (bPixelContact) {
-        ofSetColor( 0 );
-    } else {
-    }
     
     ofSetColor( pixelColor );
 

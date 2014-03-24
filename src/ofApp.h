@@ -19,6 +19,7 @@ struct TriggerLine {
     ofVec2f start;
     ofVec2f stop;
     vector<ofVec2f> linePath;
+    bool trigger;
 };
 
 class ofApp : public ofxiOSApp{
@@ -109,6 +110,8 @@ public:
     
     bool contactPixel(float _x, float _y, float _xD, float _yD);
     bool bPixelContact;
+    
+    vector<bool> triggerPixel;
     
 };
 
