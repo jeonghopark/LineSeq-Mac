@@ -6,14 +6,7 @@
 #include "ofxiOS.h"
 #include "ofxiOSExtras.h"
 
-#include "MIDIFileReader.h"
-//#include "ofxFileDialogOSX.h"
-#include "drawMidiNotes.h"
-
-//#include <iostream>
-#include "midiEventHolder.h"
-
-#include "NoteBlock.h"
+//#include "NoteBlock.h"
 
 #include "ofxTonic.h"
 
@@ -21,25 +14,11 @@
 
 using namespace Tonic;
 
-using namespace std;
-using namespace MIDIConstants;
-
-struct MidiNoteRandomDraw {
-    int pitch;
-    int velocity;
-    int duration;
-    float onPosX;
-    float onPosY;
-    float offPosX;
-    float offPosY;
-    int rotationZ;
-};
-
 
 struct TriggerLine {
     ofVec2f start;
     ofVec2f stop;
-    
+    vector<ofVec2f> linePath;
 };
 
 class ofApp : public ofxiOSApp{
@@ -72,22 +51,18 @@ public:
 //    void mouseDragged(int x, int y, int button);
 //    void mousePressed(int x, int y, int button);
 //    void mouseReleased(int x, int y, int button);
-//    void windowResized(int w, int h);
     
     void audioRequested (float * output, int bufferSize, int nChannels);
     
     
 	void startPlaying();
 	void stopPlaying();
-	bool getFilenameFromDialogBox(string* fileNameToSave);
     
 	typedef std::vector<int> IntVector;
 	typedef std::vector<double> DoubleVector;
     
 	IntVector v;
     
-	midiEventHolder midiEvents;
-	
 	int cannamMainFunction();
 	string midiFileName;
     
@@ -95,19 +70,11 @@ public:
     
 	int screenWidth, screenHeight;
     
-    
-    // NoteBlock
-    vector<NoteBlock> noteBlock;
-    
-    // MIDI Note new Drawing
-    MidiNoteRandomDraw midiNoteRandomDraw;
-    void randomMidiDrawing();
-    void randomMidiInput(int _p, int _v, int _d);
-    
     // Trigger Line
     vector<TriggerLine> triggerLine;
     ofVec2f touchUpPos;
     ofVec2f touchDownPos;
+    ofVec2f touchMov;
     void drawPreviewLine();
     void triggerLineDraw();
     
@@ -137,6 +104,11 @@ public:
     
     // Pixel
     vector<PixelBlock> pixelBlocks;
+    
+    void triggerLinePixel();
+    
+    bool contactPixel(float _x, float _y, float _xD, float _yD);
+    bool bPixelContact;
     
 };
 

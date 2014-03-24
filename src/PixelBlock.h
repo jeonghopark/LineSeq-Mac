@@ -12,39 +12,36 @@
 
 #include "ofMain.h"
 
-
 class PixelBlock{
-
+    
 public:
     
     PixelBlock();
     
-    void setup(int _size);
+    void setup();
     void pixelMovUpdate();
-    void pixelUpdate(ofPoint _pos, ofColor _c);
+    void pixelColorUpdate();
     void drawPixelRect(int _size);
     void contact();
     
     
-    bool contactPixel(float _x, float _y);
+    void contactPixel(float _x, float _y);
     
     ofPoint pixelPos;
     ofColor pixelColor;
     
     ofVec3f rotXYZ;
     
-    void touchMoved(ofTouchEventArgs & touch);
-  
-//    float pixelSize;
-    float rPixelSize;
     bool bRotateX;
+    
+    float pixelSize;
+    
+    ofPoint rPixelPos;
+    float rPixelSize;
 
-    static float pixelSize;
-    static ofPoint touchPos;
-    static ofPoint sPixelPos;
-
-
-
+    ofColor pixelColorChange;
+    bool bPixelContact;
+    
 };
 
 

@@ -42,14 +42,12 @@
 		68D74DCF99BCD6DC26EDBCD9 /* ControlSwitcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7502B0B5C61A9F982E728D1 /* ControlSwitcher.cpp */; };
 		701D05E0C5A5285EB6DD9929 /* TonicFrames.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 292C03D27F196D83035D45A1 /* TonicFrames.cpp */; };
 		750B5B38259A3F516632D140 /* ControlParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63D7585BCF2A05DC0548E8AB /* ControlParameter.cpp */; };
-		77F2ED14C3D2CE9F41A2D6D1 /* drawMidiNotes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B24989CEFA066C732EF343 /* drawMidiNotes.cpp */; };
 		7B66E0F8D1AA68943A614ED8 /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 768D4F47C266656B72B51EEC /* Noise.cpp */; };
 		8306E4468E3C866E4BD80669 /* LFNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AC8F7180BFF79FD24AC99E68 /* LFNoise.cpp */; };
 		84B19C994FE23B4AD8063357 /* FixedValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9F70F6B6328CD44582AB7B6 /* FixedValue.cpp */; };
 		9BBA9D6695D36C8156EBF485 /* ControlChangeNotifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DD6701AD7EA4359034916F6 /* ControlChangeNotifier.cpp */; };
 		A5261E0B3396AB7205BCE57F /* SineWave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7389FA296B0756F57427DCAE /* SineWave.cpp */; };
 		A7884E3AFBF7D4E3597185CA /* ControlRecorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F95BCD8225925312104BB39 /* ControlRecorder.cpp */; };
-		A8825BE518DB87490007A9A1 /* MIDIFileReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8825BE318DB87490007A9A1 /* MIDIFileReader.cpp */; };
 		A8825BE818DB886D0007A9A1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8825BE618DB88670007A9A1 /* Accelerate.framework */; };
 		A8825BEE18DB90920007A9A1 /* lineSeqMusICON.png in Resources */ = {isa = PBXBuildFile; fileRef = A8825BED18DB90920007A9A1 /* lineSeqMusICON.png */; };
 		A8825EF718DEF7440007A9A1 /* ofApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8825EF618DEF7440007A9A1 /* ofApp.mm */; };
@@ -69,10 +67,8 @@
 		D0327EAA7066D0B0AB8F8A39 /* ControlValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF2660AA58316572764D159A /* ControlValue.cpp */; };
 		D120BB40C0D36C79C47F80CF /* RingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB51F9AB2A8FA90FF86594DD /* RingBuffer.cpp */; };
 		DC968F999AA176F2C206E457 /* ControlMetroDivider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6CF889E66909A721B1B53EB0 /* ControlMetroDivider.cpp */; };
-		DF276444C8B415B79AAAEF84 /* DynamicVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23231D5B9BFA976EC334F601 /* DynamicVector.cpp */; };
 		DFF412B7BAD1265C750C4EDC /* Arithmetic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C416DFB383A5DC62535A5 /* Arithmetic.cpp */; };
 		E076782B572FEB07C514D91B /* ControlConditioner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6179B9FF20CD475368EBB5E /* ControlConditioner.cpp */; };
-		E0991CBE1EC91B9322AC8366 /* midiEventHolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6B1881C95C600C095C833A8 /* midiEventHolder.cpp */; };
 		E41D3ED713B38FB500A75A5D /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E41D3ED613B38FB500A75A5D /* Project.xcconfig */; };
 		E41D3EE613B3906D00A75A5D /* CoreOF.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E41D3EE513B3906D00A75A5D /* CoreOF.xcconfig */; };
 		E41D400B13B39D2100A75A5D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41D400613B39D2100A75A5D /* AVFoundation.framework */; };
@@ -128,11 +124,9 @@
 		1DE07D1AFC9DA79CB0708586 /* ControlDbToLinear.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlDbToLinear.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlDbToLinear.cpp; sourceTree = SOURCE_ROOT; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2258251FD3AE2C6095C21AAB /* Tonic.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Tonic.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic.h; sourceTree = SOURCE_ROOT; };
-		23231D5B9BFA976EC334F601 /* DynamicVector.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = DynamicVector.cpp; path = src/DynamicVector.cpp; sourceTree = SOURCE_ROOT; };
 		237BF3EA6F6BC0138DA8A388 /* ControlSwitcher.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlSwitcher.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlSwitcher.h; sourceTree = SOURCE_ROOT; };
 		253BE273BCE07F46B302270F /* ofxTonicSynth.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxTonicSynth.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/ofxTonicSynth.cpp; sourceTree = SOURCE_ROOT; };
 		2598FD4C643681A8F5CA1C3A /* BufferFiller.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = BufferFiller.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/BufferFiller.cpp; sourceTree = SOURCE_ROOT; };
-		26B24989CEFA066C732EF343 /* drawMidiNotes.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = drawMidiNotes.cpp; path = src/drawMidiNotes.cpp; sourceTree = SOURCE_ROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		292C03D27F196D83035D45A1 /* TonicFrames.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = TonicFrames.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/TonicFrames.cpp; sourceTree = SOURCE_ROOT; };
 		2BBDE71999F9600F0F2FA9FB /* Mixer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Mixer.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/Mixer.h; sourceTree = SOURCE_ROOT; };
@@ -201,10 +195,6 @@
 		99C2B6DCF1E981516FA58FDD /* ControlMidiToFreq.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlMidiToFreq.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlMidiToFreq.h; sourceTree = SOURCE_ROOT; };
 		9A2C416DFB383A5DC62535A5 /* Arithmetic.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Arithmetic.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/Arithmetic.cpp; sourceTree = SOURCE_ROOT; };
 		A00A07DAC656491EA68B365D /* ControlStepper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlStepper.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlStepper.h; sourceTree = SOURCE_ROOT; };
-		A8825BE118DB87490007A9A1 /* MIDIComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIComposition.h; sourceTree = "<group>"; };
-		A8825BE218DB87490007A9A1 /* MIDIEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIEvent.h; sourceTree = "<group>"; };
-		A8825BE318DB87490007A9A1 /* MIDIFileReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MIDIFileReader.cpp; sourceTree = "<group>"; };
-		A8825BE418DB87490007A9A1 /* MIDIFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIFileReader.h; sourceTree = "<group>"; };
 		A8825BE618DB88670007A9A1 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		A8825BED18DB90920007A9A1 /* lineSeqMusICON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lineSeqMusICON.png; path = bin/data/lineSeqMusICON.png; sourceTree = "<group>"; };
 		A8825EF518DEF7440007A9A1 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
@@ -215,7 +205,6 @@
 		AC8F7180BFF79FD24AC99E68 /* LFNoise.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = LFNoise.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/LFNoise.cpp; sourceTree = SOURCE_ROOT; };
 		AF5859571FBF79A21B95F14B /* StereoDelay.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = StereoDelay.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/StereoDelay.h; sourceTree = SOURCE_ROOT; };
 		B2C8669580087FF20C8A9FEF /* ControlComparison.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlComparison.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlComparison.cpp; sourceTree = SOURCE_ROOT; };
-		B6B1881C95C600C095C833A8 /* midiEventHolder.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = midiEventHolder.cpp; path = src/midiEventHolder.cpp; sourceTree = SOURCE_ROOT; };
 		B7502B0B5C61A9F982E728D1 /* ControlSwitcher.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlSwitcher.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlSwitcher.cpp; sourceTree = SOURCE_ROOT; };
 		BB16EBD10F2B2A9500518274 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BB16EBD80F2B2AB500518274 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -226,7 +215,6 @@
 		BC97CB82E0A20B14162D3847 /* ControlMidiToFreq.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlMidiToFreq.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlMidiToFreq.cpp; sourceTree = SOURCE_ROOT; };
 		C1F67F68F2D6F3C30DC2E283 /* ControlMetro.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlMetro.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlMetro.cpp; sourceTree = SOURCE_ROOT; };
 		C3D99554939D3DD8CA9F72A5 /* StereoDelay.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = StereoDelay.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/StereoDelay.cpp; sourceTree = SOURCE_ROOT; };
-		C427B42BB65B6AA017739432 /* drawMidiNotes.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = drawMidiNotes.h; path = src/drawMidiNotes.h; sourceTree = SOURCE_ROOT; };
 		C859391DBFB2AE810075CAC7 /* ControlChangeNotifier.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlChangeNotifier.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlChangeNotifier.h; sourceTree = SOURCE_ROOT; };
 		CCF780E80057DA4EFD68ACE1 /* ControlParameter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlParameter.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlParameter.h; sourceTree = SOURCE_ROOT; };
 		CFC65E196C8EF578C0460599 /* ControlSnapToScale.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlSnapToScale.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlSnapToScale.cpp; sourceTree = SOURCE_ROOT; };
@@ -239,7 +227,6 @@
 		DB949B2BBF5C3AA2542AB09A /* ControlDelay.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlDelay.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlDelay.h; sourceTree = SOURCE_ROOT; };
 		DC9812335144769961D9581E /* NoteBlock.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = NoteBlock.cpp; path = src/NoteBlock.cpp; sourceTree = SOURCE_ROOT; };
 		DF9F95183A20924B7B65AB1D /* Reverb.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Reverb.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/Reverb.cpp; sourceTree = SOURCE_ROOT; };
-		E3C1086A36300A3C345BEDC1 /* DynamicVector.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DynamicVector.h; path = src/DynamicVector.h; sourceTree = SOURCE_ROOT; };
 		E41D3ED613B38FB500A75A5D /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E41D3EE513B3906D00A75A5D /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../openFrameworks_ios/libs/openFrameworksCompiled/project/ios/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E41D400613B39D2100A75A5D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -255,7 +242,6 @@
 		EF2660AA58316572764D159A /* ControlValue.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlValue.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlValue.cpp; sourceTree = SOURCE_ROOT; };
 		F25EA7444F1CDC05ADA73806 /* ofxTonic.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxTonic.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/ofxTonic.h; sourceTree = SOURCE_ROOT; };
 		F2C1172596C23A75D8788419 /* ControlTrigger.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ControlTrigger.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlTrigger.h; sourceTree = SOURCE_ROOT; };
-		F2D4AF3DC3F12EB1F38EB600 /* midiEventHolder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = midiEventHolder.h; path = src/midiEventHolder.h; sourceTree = SOURCE_ROOT; };
 		F7FBA80B94F8E21225ABE6B7 /* FixedValue.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FixedValue.h; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/FixedValue.h; sourceTree = SOURCE_ROOT; };
 		F8F0653BB937BB79AEDF0373 /* ControlGenerator.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlGenerator.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlGenerator.cpp; sourceTree = SOURCE_ROOT; };
 		F983244281F1AF54A2F99A5F /* ControlStepper.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ControlStepper.cpp; path = ../../../openFrameworks_ios/addons/ofxTonic/src/Tonic/ControlStepper.cpp; sourceTree = SOURCE_ROOT; };
@@ -459,23 +445,6 @@
 			name = ofxTonic;
 			sourceTree = "<group>";
 		};
-		A8825EF218DEEFED0007A9A1 /* midi */ = {
-			isa = PBXGroup;
-			children = (
-				23231D5B9BFA976EC334F601 /* DynamicVector.cpp */,
-				E3C1086A36300A3C345BEDC1 /* DynamicVector.h */,
-				26B24989CEFA066C732EF343 /* drawMidiNotes.cpp */,
-				C427B42BB65B6AA017739432 /* drawMidiNotes.h */,
-				B6B1881C95C600C095C833A8 /* midiEventHolder.cpp */,
-				F2D4AF3DC3F12EB1F38EB600 /* midiEventHolder.h */,
-				A8825BE118DB87490007A9A1 /* MIDIComposition.h */,
-				A8825BE218DB87490007A9A1 /* MIDIEvent.h */,
-				A8825BE318DB87490007A9A1 /* MIDIFileReader.cpp */,
-				A8825BE418DB87490007A9A1 /* MIDIFileReader.h */,
-			);
-			name = midi;
-			sourceTree = "<group>";
-		};
 		A8825EF918DEFAA40007A9A1 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,7 +512,6 @@
 				A89C74DA18DF3C990098D14F /* PixelBlock.h */,
 				DC9812335144769961D9581E /* NoteBlock.cpp */,
 				D473EFFA85BA2F401A0212F1 /* NoteBlock.h */,
-				A8825EF218DEEFED0007A9A1 /* midi */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -653,9 +621,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4D8936E11527B74007E1F53 /* main.mm in Sources */,
-				77F2ED14C3D2CE9F41A2D6D1 /* drawMidiNotes.cpp in Sources */,
-				DF276444C8B415B79AAAEF84 /* DynamicVector.cpp in Sources */,
-				E0991CBE1EC91B9322AC8366 /* midiEventHolder.cpp in Sources */,
 				3731C442E85A5725A3DBC1CE /* NoteBlock.cpp in Sources */,
 				5F6592483037076CC4097898 /* ofxTonicSynth.cpp in Sources */,
 				61CB6F6D910509EAEE5B1203 /* ADSR.cpp in Sources */,
@@ -668,7 +633,6 @@
 				9BBA9D6695D36C8156EBF485 /* ControlChangeNotifier.cpp in Sources */,
 				20D5A0940039654A6C978AD3 /* ControlComparison.cpp in Sources */,
 				E076782B572FEB07C514D91B /* ControlConditioner.cpp in Sources */,
-				A8825BE518DB87490007A9A1 /* MIDIFileReader.cpp in Sources */,
 				1FDF282416A8662231F3A65F /* ControlCounter.cpp in Sources */,
 				B17642F90F4DE2627503C2BF /* ControlDbToLinear.cpp in Sources */,
 				01BAF05A664BBBAE8C5D1DCC /* ControlDelay.cpp in Sources */,

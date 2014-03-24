@@ -8,63 +8,46 @@
 
 #include "PixelBlock.h"
 
-
-float PixelBlock::pixelSize;
-ofPoint PixelBlock::touchPos;
-ofPoint PixelBlock::sPixelPos;
-
-
 PixelBlock::PixelBlock(){
 
-    ofAddListener(ofEvents().touchMoved, this, &PixelBlock::touchMoved);
-    rotXYZ.x = 1;
 }
 
 
-void PixelBlock::setup(int _size){
-    
+void PixelBlock::setup(){
+    pixelColorChange = pixelColor;
 }
 
 void PixelBlock::pixelMovUpdate(){
     
-    rotXYZ.x *= 0.97;
+    rPixelSize = pixelSize;
+    rPixelPos = pixelPos;
+
 }
 
-
-void PixelBlock::pixelUpdate(ofPoint _pos, ofColor _c){
+void PixelBlock::pixelColorUpdate(){
     
+    if (bPixelContact) pixelColorChange = ofColor_<unsigned char>::black;
+    else pixelColorChange = pixelColor;
 
 }
-
 
 void PixelBlock::drawPixelRect(int _size){
     
-    ofTranslate( pixelPos.x, pixelPos.y );
-
     ofPushMatrix();
     ofPushStyle();
     
-    
-    if(contactPixel(touchPos.x, touchPos.y)){
-        rotXYZ.x *= 0.96;
-        ofRotateX(ofRadToDeg(PI*0.5));
+    if (bPixelContact) {
+        ofSetColor( 0 );
     } else {
-        rotXYZ.x = 0;
-        ofRotateX(ofRadToDeg(0));
     }
-    ofTranslate( 0, -_size/2 );
-
-    ofSetColor( pixelColor );
     
-    ofRect( 0, 0, _size, _size);
+    ofSetColor( pixelColor );
+
+    ofRect( pixelPos.x, pixelPos.y, _size, _size);
 
     ofPopStyle();
     ofPopMatrix();
 
-    pixelSize = _size;
-    sPixelPos = pixelPos;
-
-    
 }
 
 
@@ -72,24 +55,13 @@ void PixelBlock::contact(){
     
 }
 
-void PixelBlock::touchMoved(ofTouchEventArgs & touch){
-    
-    if (contactPixel(touch.x, touch.y)) {
-        bRotateX = true;
-        rotXYZ.x = 1;
-    }
-    
-    touchPos.x = touch.x;
-    touchPos.y = touch.y;
-}
 
+void PixelBlock::contactPixel(float _x, float _y){
 
-bool PixelBlock::contactPixel(float _x, float _y){
-
-    if (((_x>sPixelPos.x)&&(_x<sPixelPos.x+pixelSize))&&((_y>sPixelPos.y)&&(_y<sPixelPos.y+pixelSize))) {
-        return true;
+    if (((_x>rPixelPos.x)&&(_x<rPixelPos.x+rPixelSize))&&((_y>rPixelPos.y)&&(_y<rPixelPos.y+rPixelSize))) {
+        bPixelContact = true;
     } else {
-        return false;
+        bPixelContact = false;
     }
     
 }
