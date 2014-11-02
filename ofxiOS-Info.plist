@@ -16,6 +16,17 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>Icon.png</string>
+				<string>Icon@2x.png</string>
+			</array>
+		</dict>
+	</dict>
+	<key>CFBundleIcons~ipad</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
 				<string>lineSeqMusICON</string>
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>

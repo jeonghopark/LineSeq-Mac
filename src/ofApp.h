@@ -12,6 +12,8 @@
 
 #include "PixelBlock.h"
 
+#define TRIGGER_LINE_NUM 8
+
 using namespace Tonic;
 
 
@@ -81,7 +83,8 @@ public:
     
     
     // Trigger Point;
-    float triggerMovingFactor;
+    float triggerMovingFactor[TRIGGER_LINE_NUM];
+    float triggerMovingSpeed[TRIGGER_LINE_NUM];
     ofVec2f triggerPosOnLine;
     bool triggerHoverX, triggerHoverY;
     

@@ -7,14 +7,14 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofSetOrientation(OF_ORIENTATION_90_RIGHT);
     
-    ofxAccelerometer.setup();               //accesses accelerometer data
-    ofxiPhoneAlerts.addListener(this);      //allows elerts to appear while app is running
-    //    ofRegisterTouchEvents(this);            //method that passes touch events
+    ofxAccelerometer.setup();
+    ofxiPhoneAlerts.addListener(this);
+    //    ofRegisterTouchEvents(this);
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     pixelSize = 20;
-    videoGrabber.setDeviceID(1);
+//    videoGrabber.setDeviceID(1);
     videoGrabber.initGrabber(480, 360);
     numWidthPixel = videoGrabber.getWidth()/pixelSize;
     numHeightPixel = videoGrabber.getHeight()/pixelSize;
@@ -22,10 +22,16 @@ void ofApp::setup(){
 	tex.allocate(numWidthPixel, numHeightPixel, GL_RGB);
 	pix = new unsigned char[ (int)( numWidthPixel * numHeightPixel * 3.0) ];
     pixelBlocks.resize(numWidthPixel * numHeightPixel);
-    
+    for (int i=0; i<pixelBlocks.size(); i++) {
+        pixelBlocks[i].setup();
+    }
+
 	playing = false;
     
-    triggerMovingFactor = 0;
+    for (int i=0; i<TRIGGER_LINE_NUM; i++) {
+        triggerMovingFactor[i] = 0;
+        triggerMovingSpeed[i] = ofRandom(1) * 0.024;
+    }
     
     // Tonic
     ofSoundStreamSetup(2, 0, this, 44100, 256, 4);
@@ -41,11 +47,6 @@ void ofApp::setup(){
     
     synth.setOutputGen( toneWithEnvelope );
     
-    for (int i=0; i<pixelBlocks.size(); i++) {
-        pixelBlocks[i].setup();
-        //        pixelBlocks[i].pixelColorUpdate();
-    }
-    
     
 }
 
@@ -56,23 +57,11 @@ void ofApp::update(){
 	unsigned char * src = videoGrabber.getPixels();
     
     int _drawPixelSize = pixelSize*1.5;
-    int _pixelIndex = 0;
     
     float _xPos = ofGetWidth()/2-((numWidthPixel-1)*_drawPixelSize)/2;
     float _yPos = ofGetHeight()/2-((numHeightPixel-1)*_drawPixelSize)/2;
     ofPoint _pixelChangePos = ofPoint( _xPos, _yPos );
     
-    //    for (int i=0; i<triggerLine.size(); i++) {
-    //        triggerPosOnLine = ( triggerLine[i].stop - triggerLine[i].start ) * triggerMovingFactor + triggerLine[i].start;
-    //
-    //        for (int j=0; j<pixelBlocks.size(); j++) {
-    //            pixelBlocks[j].contactPixel(triggerPosOnLine.x, triggerPosOnLine.y);
-    ////            pixelBlocks[j].pixelColorUpdate();
-    //        }
-    //    }
-    
-    triggerPixel.resize(numHeightPixel*numWidthPixel);
-
     
     for (int i=0; i<numHeightPixel; i++) {
         for (int j=0; j<numWidthPixel; j++) {
@@ -83,93 +72,33 @@ void ofApp::update(){
             pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
             
             for (int k=0; k<triggerLine.size(); k++) {
-                triggerPosOnLines[k] = ( triggerLine[k].stop - triggerLine[k].start ) * triggerMovingFactor + triggerLine[k].start;
+                triggerPosOnLines[k] = ( triggerLine[k].stop - triggerLine[k].start ) * triggerMovingFactor[k] + triggerLine[k].start;
+                
                 pixelBlocks[_indexPixel].contactPixel(triggerPosOnLines[k].x, triggerPosOnLines[k].y);
+                
                 if (pixelBlocks[_indexPixel].bPixelContact) {
-                    pixelBlocks[_indexPixel].pixelColor = ofColor(255,0,0);
-                } else {
+                    pixelBlocks[_indexPixel].pixelColor = ofColor::fromHsb(0, 255, 180, 180);
+                    trigger( ofMap(src[_index], 0, 255, 35, 105) );
                 }
+                
             }
-        }
-    }
-    
 
-//    if (triggerLine.size()==3) {
-//        
-//        ofPoint triggerPosOnLine1 = ( triggerLine[0].stop - triggerLine[0].start ) * triggerMovingFactor + triggerLine[0].start;
-//        ofPoint triggerPosOnLine2 = ( triggerLine[1].stop - triggerLine[1].start ) * triggerMovingFactor + triggerLine[1].start;
-//        ofPoint triggerPosOnLine3 = ( triggerLine[2].stop - triggerLine[2].start ) * triggerMovingFactor + triggerLine[2].start;
-//
-//        for (int i=0; i<numHeightPixel; i++) {
-//            for (int j=0; j<numWidthPixel; j++) {
-//                
-//                int _index = j * pixelSize * 3 + (numHeightPixel-1-i) * pixelSize * numWidthPixel * pixelSize * 3;
-//                
-//                int _indexPixel = j + i * numWidthPixel;
-//                
-//                ofPoint _pixelPos = ofPoint(j*_drawPixelSize, i*_drawPixelSize) + _pixelChangePos;
-//                
-//                pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
-//                
-//                pixelBlocks[_indexPixel].contactPixel(triggerPosOnLine1.x, triggerPosOnLine1.y);
-//                if (pixelBlocks[_indexPixel].bPixelContact) {
-//                    pixelBlocks[_indexPixel].pixelColor = ofColor(255,0,0);
-//                } else {
-////                    pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
-//                }
-//
-//            
-//                pixelBlocks[_indexPixel].contactPixel(triggerPosOnLine2.x, triggerPosOnLine2.y);
-//                if (pixelBlocks[_indexPixel].bPixelContact) {
-//                    pixelBlocks[_indexPixel].pixelColor = ofColor(255,0,0);
-//                } else {
-////                    pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
-//                }
-//
-//                pixelBlocks[_indexPixel].contactPixel(triggerPosOnLine3.x, triggerPosOnLine3.y);
-//                if (pixelBlocks[_indexPixel].bPixelContact) {
-//                    pixelBlocks[_indexPixel].pixelColor = ofColor(255,0,0);
-//                } else {
-////                    pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
-//                }
-//
-//            }
-//        }
-//
-//    }
-    
-    for (int i=0; i<numHeightPixel; i++) {
-        for (int j=0; j<numWidthPixel; j++) {
-            int _index = j * pixelSize * 3 + (numHeightPixel-1-i) * pixelSize * numWidthPixel * pixelSize * 3;
-            
             ofPoint _pixelPos = ofPoint(j*_drawPixelSize, i*_drawPixelSize) + _pixelChangePos;
-            
-            
-            //            pixelBlocks[_pixelIndex].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
-            pixelBlocks[_pixelIndex].pixelPos   = _pixelPos;
-            pixelBlocks[_pixelIndex].pixelSize  = _drawPixelSize;
-            pixelBlocks[_pixelIndex].pixelMovUpdate();
-            _pixelIndex++;
+
+            pixelBlocks[_indexPixel].pixelPos   = _pixelPos;
+            pixelBlocks[_indexPixel].pixelSize  = _drawPixelSize;
+            pixelBlocks[_indexPixel].pixelMovUpdate();
+
         }
     }
     
-    triggerMovingFactor = triggerMovingFactor + 0.012;
-    if (triggerMovingFactor>1) triggerMovingFactor = 0;
-    
-}
-
-
-bool ofApp::contactPixel(float _x, float _y, float _xD, float _yD){
-    
-    int _drawPixelSize = pixelSize*1.5;
-    
-    if (((_x>_xD)&&(_x<_xD+_drawPixelSize))&&((_y>_yD)&&(_y<_yD+_drawPixelSize))) {
-        return true;
-    } else {
-        return false;
+    for (int i=0; i<TRIGGER_LINE_NUM; i++) {
+        triggerMovingFactor[i] = triggerMovingFactor[i] + triggerMovingSpeed[i];
+        if (triggerMovingFactor[i]>1) triggerMovingFactor[i] = 0;
     }
     
 }
+
 
 //--------------------------------------------------------------
 void ofApp::draw(){
@@ -177,8 +106,8 @@ void ofApp::draw(){
     int _drawPixelSize = pixelSize*1.5;
     
     ofPushMatrix();
-    
     ofPushStyle();
+    
     for (int i=0; i<numHeightPixel; i++) {
         for (int j=0; j<numWidthPixel; j++) {
             int _index = (j + i * numWidthPixel);
@@ -195,16 +124,30 @@ void ofApp::draw(){
     
     ofDrawBitmapString( ofToString( ofGetFrameRate(),2), 10, ofGetHeight()-20 );
     
-    //    videoGrabber.draw(0, 0, 160, 120);
+//    videoGrabber.draw(0, 0, 160, 120);
     
 }
+
+bool ofApp::contactPixel(float _x, float _y, float _xD, float _yD){
+    
+    int _drawPixelSize = pixelSize*1.5;
+    
+    if (((_x>_xD)&&(_x<_xD+_drawPixelSize))&&((_y>_yD)&&(_y<_yD+_drawPixelSize))) {
+        return true;
+    } else {
+        return false;
+    }
+    
+}
+
 
 
 void ofApp::drawPreviewLine(){
     
     ofPushMatrix();
     ofPushStyle();
-    ofSetColor( ofColor::fromHsb(0, 255, 255, 150) );
+
+    ofSetColor( ofColor::fromHsb(120, 255, 180, 180) );
     ofSetLineWidth(2);
     
     ofLine( touchDownPos, touchUpPos );
@@ -219,13 +162,13 @@ void ofApp::triggerLineDraw(){
     
     ofPushMatrix();
     ofPushStyle();
-    ofSetColor( ofColor::fromHsb(0, 255, 255, 150) );
+    ofSetColor( ofColor::fromHsb(0, 255, 180, 180));
     ofSetLineWidth(3);
     
     for (int i=0; i<triggerLine.size(); i++) {
         ofLine( triggerLine[i].start, triggerLine[i].stop );
         
-        triggerPosOnLine = ( triggerLine[i].stop - triggerLine[i].start ) * triggerMovingFactor + triggerLine[i].start;
+        triggerPosOnLine = ( triggerLine[i].stop - triggerLine[i].start ) * triggerMovingFactor[i] + triggerLine[i].start;
         
         //        for (int i=0; i<noteBlock.size(); i++) {
         //            noteBlock[i].contact(triggerPosOnLine);
@@ -248,7 +191,7 @@ void ofApp::triggerLineDraw(){
 void ofApp::triggerLinePixel(){
     
     for (int i=0; i<triggerLine.size(); i++) {
-        triggerPosOnLine = ( triggerLine[i].stop - triggerLine[i].start ) * triggerMovingFactor + triggerLine[i].start;
+        triggerPosOnLine = ( triggerLine[i].stop - triggerLine[i].start ) * triggerMovingFactor[i] + triggerLine[i].start;
         
         for (int j=0; j<pixelBlocks.size(); j++) {
             pixelBlocks[j].contactPixel(triggerPosOnLine.x, triggerPosOnLine.y);
@@ -374,7 +317,6 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void ofApp::touchUp(ofTouchEventArgs & touch){
     
-    
     TriggerLine triggerLine_e;
     triggerLine_e.start.x = touchDownPos.x;
     triggerLine_e.start.y = touchDownPos.y;
@@ -422,9 +364,7 @@ void ofApp::deviceOrientationChanged(int newOrientation){
 
 
 void ofApp::startPlaying(){
-    
 	playing = !playing;
-    
 }
 
 void ofApp::stopPlaying(){
