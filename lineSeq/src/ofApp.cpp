@@ -3,15 +3,8 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    ofBackground(120);
+    ofBackground(0);
     ofSetFrameRate(60);
-    ofSetOrientation(OF_ORIENTATION_90_RIGHT);
-    
-    ofxAccelerometer.setup();
-    ofxiPhoneAlerts.addListener(this);
-    //    ofRegisterTouchEvents(this);
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     pixelSize = 20;
 //    videoGrabber.setDeviceID(1);
@@ -34,7 +27,6 @@ void ofApp::setup(){
     }
     
     // Tonic
-    ofSoundStreamSetup(2, 0, this, 44100, 256, 4);
     
     ControlGenerator midiNote = synth.addParameter("midiNumber");
     ControlGenerator noteFreq =  ControlMidiToFreq().input(midiNote);
@@ -47,7 +39,10 @@ void ofApp::setup(){
     
     synth.setOutputGen( toneWithEnvelope );
     
+    ofSoundStreamSetup(2, 1, this, 44100, 256, 4);
     
+    fullscreen = false;
+
 }
 
 //--------------------------------------------------------------
@@ -105,6 +100,8 @@ void ofApp::draw(){
     
     int _drawPixelSize = pixelSize*1.5;
     
+    ofTranslate( ofGetWidth(), ofGetHeight() );
+    ofRotateZ(180);
     ofPushMatrix();
     ofPushStyle();
     
@@ -289,33 +286,49 @@ void ofApp::setScaleDegreeBasedOnMouseX(){
 
 
 //--------------------------------------------------------------
-void ofApp::exit(){
-    pix = NULL;
-}
-
-//--------------------------------------------------------------
-void ofApp::touchDown(ofTouchEventArgs & touch){
-    
-    touchUpPos.x = touch.x;
-    touchUpPos.y = touch.y;
-    touchDownPos.x = touch.x;
-    touchDownPos.y = touch.y;
+void ofApp::keyPressed(int key){
     
 }
 
 //--------------------------------------------------------------
-void ofApp::touchMoved(ofTouchEventArgs & touch){
+void ofApp::keyReleased(int key){
     
-    touchMov.x = touch.x;
-    touchMov.y = touch.y;
-    
-    touchUpPos.x = touch.x;
-    touchUpPos.y = touch.y;
+    if (key=='f') {
+        fullscreen = !fullscreen;
+        ofSetFullscreen(fullscreen);
+    }
     
 }
 
 //--------------------------------------------------------------
-void ofApp::touchUp(ofTouchEventArgs & touch){
+void ofApp::mouseMoved(int x, int y){
+    
+}
+
+
+//--------------------------------------------------------------
+void ofApp::mousePressed(int x, int y, int button){
+    
+    touchUpPos.x = x;
+    touchUpPos.y = y;
+    touchDownPos.x = x;
+    touchDownPos.y = y;
+    
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseDragged(int x, int y, int button){
+    
+    touchMov.x = x;
+    touchMov.y = y;
+    
+    touchUpPos.x = x;
+    touchUpPos.y = y;
+    
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseReleased(int x, int y, int button){
     
     TriggerLine triggerLine_e;
     triggerLine_e.start.x = touchDownPos.x;
@@ -331,37 +344,19 @@ void ofApp::touchUp(ofTouchEventArgs & touch){
 }
 
 //--------------------------------------------------------------
-void ofApp::touchDoubleTap(ofTouchEventArgs & touch){
-    
-    triggerLine.clear();
+void ofApp::windowResized(int w, int h){
     
 }
 
 //--------------------------------------------------------------
-void ofApp::touchCancelled(ofTouchEventArgs & touch){
+void ofApp::gotMessage(ofMessage msg){
     
 }
 
 //--------------------------------------------------------------
-void ofApp::lostFocus(){
+void ofApp::dragEvent(ofDragInfo dragInfo){
     
 }
-
-//--------------------------------------------------------------
-void ofApp::gotFocus(){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMemoryWarning(){
-    
-}
-
-//--------------------------------------------------------------
-void ofApp::deviceOrientationChanged(int newOrientation){
-    
-}
-
 
 void ofApp::startPlaying(){
 	playing = !playing;
