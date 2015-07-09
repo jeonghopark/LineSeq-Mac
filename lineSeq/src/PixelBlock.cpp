@@ -35,7 +35,7 @@ void PixelBlock::drawPixelRect(int _size){
     
     ofSetColor( pixelColor );
 
-    ofRect( pixelPos.x, pixelPos.y, _size, _size);
+    ofRect( rPixelPos.x, rPixelPos.y, _size, _size);
 
     ofPopStyle();
     ofPopMatrix();

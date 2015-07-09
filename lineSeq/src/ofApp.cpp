@@ -49,14 +49,13 @@ void ofApp::setup(){
 void ofApp::update(){
     
 	videoGrabber.update();
-	unsigned char * src = videoGrabber.getPixels();
+	unsigned char * src = videoGrabber.getPixels().getData();
     
-    int _drawPixelSize = pixelSize*1.5;
+    int _drawPixelSize = pixelSize * 1.5;
     
-    float _xPos = ofGetWidth()/2-((numWidthPixel-1)*_drawPixelSize)/2;
-    float _yPos = ofGetHeight()/2-((numHeightPixel-1)*_drawPixelSize)/2;
+    float _xPos = ofGetWidth()/2.0 - ( (numWidthPixel-1) * _drawPixelSize ) / 2.0;
+    float _yPos = ofGetHeight()/2.0 - ( (numHeightPixel-1) * _drawPixelSize ) / 2.0;
     ofPoint _pixelChangePos = ofPoint( _xPos, _yPos );
-    
     
     for (int i=0; i<numHeightPixel; i++) {
         for (int j=0; j<numWidthPixel; j++) {
@@ -80,7 +79,7 @@ void ofApp::update(){
 
             ofPoint _pixelPos = ofPoint(j*_drawPixelSize, i*_drawPixelSize) + _pixelChangePos;
 
-            pixelBlocks[_indexPixel].pixelPos   = _pixelPos;
+            pixelBlocks[(numHeightPixel * numWidthPixel)-_indexPixel].pixelPos   =  _pixelPos;
             pixelBlocks[_indexPixel].pixelSize  = _drawPixelSize;
             pixelBlocks[_indexPixel].pixelMovUpdate();
 
@@ -98,19 +97,15 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    int _drawPixelSize = pixelSize*1.5;
+    int _drawPixelSize = pixelSize * 1.5;
     
-    ofTranslate( ofGetWidth(), ofGetHeight() );
-    ofRotateZ(180);
     ofPushMatrix();
     ofPushStyle();
     
     for (int i=0; i<numHeightPixel; i++) {
         for (int j=0; j<numWidthPixel; j++) {
             int _index = (j + i * numWidthPixel);
-            ofPushMatrix();
             pixelBlocks[_index].drawPixelRect(_drawPixelSize);
-            ofPopMatrix();
         }
     }
     ofPopStyle();
