@@ -43,7 +43,12 @@ void ofApp::setup(){
     
     fullscreen = false;
 
+    bColorValueView = false;
+    
 }
+
+
+
 
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -57,10 +62,13 @@ void ofApp::update(){
     float _yPos = ofGetHeight()/2.0 - ( (numHeightPixel-1) * _drawPixelSize ) / 2.0;
     ofPoint _pixelChangePos = ofPoint( _xPos, _yPos );
     
+
+    
     for (int i=0; i<numHeightPixel; i++) {
         for (int j=0; j<numWidthPixel; j++) {
             
             int _index = j * pixelSize * 3 + (numHeightPixel-1-i) * pixelSize * numWidthPixel * pixelSize * 3;
+
             int _indexPixel = j + i * numWidthPixel;
             
             pixelBlocks[_indexPixel].pixelColor = ofColor(src[_index], src[_index+1], src[_index+2]);
@@ -86,12 +94,16 @@ void ofApp::update(){
         }
     }
     
+    
     for (int i=0; i<TRIGGER_LINE_NUM; i++) {
         triggerMovingFactor[i] = triggerMovingFactor[i] + triggerMovingSpeed[i];
         if (triggerMovingFactor[i]>1) triggerMovingFactor[i] = 0;
     }
     
+    
 }
+
+
 
 
 //--------------------------------------------------------------
@@ -104,10 +116,33 @@ void ofApp::draw(){
     
     for (int i=0; i<numHeightPixel; i++) {
         for (int j=0; j<numWidthPixel; j++) {
-            int _index = (j + i * numWidthPixel);
+            int _index = j + i * numWidthPixel;
             pixelBlocks[_index].drawPixelRect(_drawPixelSize);
         }
     }
+
+
+    
+    
+    if (bColorValueView) {
+
+        for (int i=0; i<numHeightPixel; i++) {
+            for (int j=0; j<numWidthPixel; j++) {
+                int _index = (j + i * numWidthPixel);
+                int _cR = pixelBlocks[_index].pixelColor.r;
+                int _cG = pixelBlocks[_index].pixelColor.g;
+                int _cB = pixelBlocks[_index].pixelColor.b;
+                
+                string _c = ofToString(_cR) + " " + ofToString(_cG) + " " + ofToString(_cB);
+                ofDrawBitmapString(ofToString(_cR), pixelBlocks[_index].pixelPos);
+                ofDrawBitmapString(ofToString(_cG), pixelBlocks[_index].pixelPos + ofVec2f(0, 10));
+                ofDrawBitmapString(ofToString(_cB), pixelBlocks[_index].pixelPos + ofVec2f(0, 20));
+            }
+        }
+        
+    }
+
+    
     ofPopStyle();
     ofPopMatrix();
     
@@ -128,9 +163,19 @@ void ofApp::informationText(){
     ofDrawBitmapString( ofToString( ofGetFrameRate(),2), 10, ofGetHeight()-20 );
     ofDrawBitmapString( "f : full screen", 10, ofGetHeight()-40 );
     ofDrawBitmapString( "r : reset lines", 10, ofGetHeight()-60 );
-
+    ofDrawBitmapString( "c : reset lines", 10, ofGetHeight()-80 );
     
 }
+
+
+//--------------------------------------------------------------
+void colorValueView(){
+    
+    
+    
+}
+
+
 
 
 //--------------------------------------------------------------
@@ -316,6 +361,8 @@ void ofApp::keyReleased(int key){
         touchDownPos.x = 0;
         touchDownPos.y = 0;
         
+    } else if (key == 'c') {
+        bColorValueView = !bColorValueView;
     }
     
     

@@ -107,6 +107,9 @@ public:
   
     void informationText();
     
+    void colorValueView();
+    bool bColorValueView;
+    
 };
 
 
