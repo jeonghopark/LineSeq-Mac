@@ -39,7 +39,7 @@ void ofApp::setup(){
     
     synth.setOutputGen( toneWithEnvelope );
     
-    ofSoundStreamSetup(2, 1, this, 44100, 256, 4);
+    ofSoundStreamSetup(2, 0, this, 44100, 256, 4);
     
     fullscreen = false;
 
@@ -79,7 +79,7 @@ void ofApp::update(){
 
             ofPoint _pixelPos = ofPoint(j*_drawPixelSize, i*_drawPixelSize) + _pixelChangePos;
 
-            pixelBlocks[(numHeightPixel * numWidthPixel)-_indexPixel].pixelPos   =  _pixelPos;
+            pixelBlocks[(numHeightPixel * numWidthPixel)-_indexPixel].pixelPos = _pixelPos;
             pixelBlocks[_indexPixel].pixelSize  = _drawPixelSize;
             pixelBlocks[_indexPixel].pixelMovUpdate();
 
@@ -142,7 +142,7 @@ void ofApp::drawPreviewLine(){
     ofSetColor( ofColor::fromHsb(120, 255, 180, 180) );
     ofSetLineWidth(2);
     
-    ofLine( touchDownPos, touchUpPos );
+    ofDrawLine( touchDownPos, touchUpPos );
     
     ofPopStyle();
     ofPopMatrix();
@@ -158,7 +158,7 @@ void ofApp::triggerLineDraw(){
     ofSetLineWidth(3);
     
     for (int i=0; i<triggerLine.size(); i++) {
-        ofLine( triggerLine[i].start, triggerLine[i].stop );
+        ofDrawLine( triggerLine[i].start, triggerLine[i].stop );
         
         triggerPosOnLine = ( triggerLine[i].stop - triggerLine[i].start ) * triggerMovingFactor[i] + triggerLine[i].start;
         
@@ -170,7 +170,7 @@ void ofApp::triggerLineDraw(){
         //        }
         
         ofPushStyle();
-        ofEllipse( triggerPosOnLine.x, triggerPosOnLine.y, 10, 10 );
+        ofDrawCircle( triggerPosOnLine.x, triggerPosOnLine.y, 10, 10 );
         ofPopStyle();
     }
     
