@@ -114,12 +114,26 @@ void ofApp::draw(){
     drawPreviewLine();
     triggerLineDraw();
     
-    ofDrawBitmapString( ofToString( ofGetFrameRate(),2), 10, ofGetHeight()-20 );
+    
+    informationText();
     
 //    videoGrabber.draw(0, 0, 160, 120);
     
 }
 
+
+//--------------------------------------------------------------
+void ofApp::informationText(){
+ 
+    ofDrawBitmapString( ofToString( ofGetFrameRate(),2), 10, ofGetHeight()-20 );
+    ofDrawBitmapString( "f : full screen", 10, ofGetHeight()-40 );
+    ofDrawBitmapString( "r : reser lines", 10, ofGetHeight()-60 );
+
+    
+}
+
+
+//--------------------------------------------------------------
 bool ofApp::contactPixel(float _x, float _y, float _xD, float _yD){
     
     int _drawPixelSize = pixelSize*1.5;
@@ -134,6 +148,7 @@ bool ofApp::contactPixel(float _x, float _y, float _xD, float _yD){
 
 
 
+//--------------------------------------------------------------
 void ofApp::drawPreviewLine(){
     
     ofPushMatrix();
@@ -289,9 +304,20 @@ void ofApp::keyPressed(int key){
 void ofApp::keyReleased(int key){
     
     if (key=='f') {
+
         fullscreen = !fullscreen;
         ofSetFullscreen(fullscreen);
+
+    } else if (key == 'r' ) {
+    
+        triggerLine.clear();
+        touchUpPos.x = 0;
+        touchUpPos.y = 0;
+        touchDownPos.x = 0;
+        touchDownPos.y = 0;
+        
     }
+    
     
 }
 

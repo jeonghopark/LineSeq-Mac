@@ -1,12 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-
-//#include "NoteBlock.h"
-
 #include "ofxTonic.h"
 
 #include "PixelBlock.h"
+//#include "NoteBlock.h"
 
 #define TRIGGER_LINE_NUM 8
 
@@ -106,6 +104,8 @@ public:
     ofPoint triggerPosOnLines[8];
     
     bool fullscreen;
+  
+    void informationText();
     
 };
 
