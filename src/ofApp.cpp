@@ -161,9 +161,9 @@ void ofApp::draw(){
 void ofApp::informationText(){
  
     ofDrawBitmapString( ofToString( ofGetFrameRate(),2), 10, ofGetHeight()-20 );
-    ofDrawBitmapString( "f : full screen", 10, ofGetHeight()-40 );
-    ofDrawBitmapString( "r : reset lines", 10, ofGetHeight()-60 );
-    ofDrawBitmapString( "c : reset lines", 10, ofGetHeight()-80 );
+    ofDrawBitmapString( "f : full screen", 10, ofGetHeight() - 40 );
+    ofDrawBitmapString( "r : reset lines", 10, ofGetHeight() - 60 );
+    ofDrawBitmapString( "c : reset lines", 10, ofGetHeight() - 80 );
     
 }
 
@@ -210,6 +210,7 @@ void ofApp::drawPreviewLine(){
 }
 
 
+//--------------------------------------------------------------
 void ofApp::triggerLineDraw(){
     
     ofPushMatrix();
@@ -240,6 +241,7 @@ void ofApp::triggerLineDraw(){
 }
 
 
+//--------------------------------------------------------------
 void ofApp::triggerLinePixel(){
     
     for (int i=0; i<triggerLine.size(); i++) {
@@ -255,10 +257,13 @@ void ofApp::triggerLinePixel(){
 
 
 
+//--------------------------------------------------------------
 void ofApp::trigger(int _pitch){
     synth.setParameter("midiNumber", _pitch);
     synth.setParameter("trigger", 1);
 }
+
+
 
 //--------------------------------------------------------------
 void ofApp::setScaleDegreeBasedOnMouseX(){
@@ -426,15 +431,20 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
     
 }
 
+
+
+//--------------------------------------------------------------
 void ofApp::startPlaying(){
 	playing = !playing;
 }
 
+//--------------------------------------------------------------
 void ofApp::stopPlaying(){
 	playing = false;
 }
 
 
+//--------------------------------------------------------------
 void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
     synth.fillBufferOfFloats(output, bufferSize, nChannels);
 }
