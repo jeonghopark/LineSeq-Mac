@@ -127,7 +127,7 @@ void ofApp::informationText(){
  
     ofDrawBitmapString( ofToString( ofGetFrameRate(),2), 10, ofGetHeight()-20 );
     ofDrawBitmapString( "f : full screen", 10, ofGetHeight()-40 );
-    ofDrawBitmapString( "r : reser lines", 10, ofGetHeight()-60 );
+    ofDrawBitmapString( "r : reset lines", 10, ofGetHeight()-60 );
 
     
 }
