@@ -3,6 +3,13 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+#ifdef DEBUG
+    
+#else
+    ofSetDataPathRoot("../Resources/data");
+#endif
+    
+    
     ofBackground(0);
     ofSetFrameRate(60);
     
@@ -155,6 +162,20 @@ void ofApp::draw(){
 //    videoGrabber.draw(0, 0, 160, 120);
     
 }
+
+
+
+
+
+//--------------------------------------------------------------
+void ofApp::exit(){
+    
+    std::exit(0);
+    
+}
+
+
+
 
 
 //--------------------------------------------------------------
